@@ -3,21 +3,21 @@
 
   <head>
     <meta charset="utf-8">
-    <title>login</title>
+    <title>login admin</title>
     <%- include layout/materialize %>
   </head>
 
   <body>
     <%- include layout/header %>
       <div class="row">
-        <form action="/login" method="post">
-          <h2>login</h2>
+        <form action="/admin" method="post">
+          <h2>login administrator</h2>
           <input type="text" name="username" placeholder="username"><br>
           <input type="password" name="password" placeholder="password"><br><br>
           <button type="submit" name="submit">login</button>
         </form>
-        <p>don't have account? <a href="/signup">register here</a></p>
       </div>
+
   </body>
 
 </html>
