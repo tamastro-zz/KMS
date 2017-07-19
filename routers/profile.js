@@ -6,9 +6,11 @@ var session = require('express-session')
 var model = require('../models')
 
 router.get('/', (req, res) => {
-  model.User.findAll({
-      order: [['name', 'ASC']],
-      // include: [model.Bridge]
+  model.Bridge.findOne({
+      where: {
+        UserId: req.session.user.idUser
+      },
+      include: [model.User, model.Car]
     })
     .then(profil => {
       res.render('profile', {
