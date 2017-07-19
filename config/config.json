@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "tamastro",
+    "password": "1234",
+    "database": "kms",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port": "5432"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}

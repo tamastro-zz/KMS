@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(valid())
 app.use(session({
-  secret: 'sag',
+  secret: 'kmshe',
   resave: false,
   saveUninitialized: true,
   cookie: {}
