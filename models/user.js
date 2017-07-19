@@ -3,7 +3,8 @@
 var randomSecret = require('../helpers/randomSecret')
 var hash = require('../helpers/hash')
 
-module.exports = function (sequelize, DataTypes) {
+
+module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     name: DataTypes.STRING,
     address: DataTypes.TEXT,
@@ -13,7 +14,8 @@ module.exports = function (sequelize, DataTypes) {
     password: DataTypes.STRING,
     role: DataTypes.STRING,
     secret: DataTypes.STRING
-  }, {
+  },
+  {
     hooks: {
       beforeCreate: (models) => {
         let secret = randomSecret();
