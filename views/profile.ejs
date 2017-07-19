@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <%- include layout/materialize %>
+  </head>
+
+  <body>
+    <%- include layout/header %>
+      <h1><%= dataUser.User.name %></h1>
+      <h1><%= dataUser.User.address %></h1>
+      <h1><%= dataUser.User.phone %></h1>
+      <h1><%= dataUser.User.email %></h1>
+      <h1><%= dataUser.User.username %></h1>
+      <h1><%= dataUser.Car.brand %></h1>
+      <h1><%= dataUser.Car.type %></h1>
+
+      <h1><%= dataUser.uangMuka %></h1>
+
+  </body>
+
+</html>

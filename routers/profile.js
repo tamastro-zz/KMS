@@ -5,9 +5,18 @@ var session = require('express-session')
 
 var model = require('../models')
 
-router.get('/', (req,res) => {
-  // res.render('index')
-  res.send('halaman user')
+router.get('/', (req, res) => {
+  model.Bridge.findOne({
+      where: {
+        UserId: req.session.user.idUser
+      },
+      include: [model.User, model.Car]
+    })
+    .then(profil => {
+      res.render('profile', {
+        dataUser: profil,
+      })
+    })
 })
 
 module.exports = router

@@ -3,6 +3,7 @@
 var randomSecret = require('../helpers/randomSecret')
 var hash = require('../helpers/hash')
 
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     name: DataTypes.STRING,
@@ -23,6 +24,12 @@ module.exports = function(sequelize, DataTypes) {
         models.password = hash(secret, password);
       }
     }
-  });
+  })
+  User.associate = (models) => {
+    User.belongsToMany(models.Car, {
+      through: `Bridge`,
+      foreignKey: `UserId`
+    })
+  };
   return User;
 };

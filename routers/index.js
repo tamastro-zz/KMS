@@ -5,16 +5,16 @@ var session = require('express-session')
 var model = require('../models')
 var hash = require('../helpers/hash')
 
-router.get('/', (req,res) => {
-  // console.log(req.session);
+
+router.get('/', (req, res) => {
   res.render('login')
 })
 
-router.get('/signup', (req,res) => {
+router.get('/signup', (req, res) => {
   res.render('signup')
 })
 
-router.post('/signup', (req,res) => {
+router.post('/signup', (req, res) => {
   if (req.body.password == req.body.confpassword) {
     model.User.create(({
       name: req.body.name,
@@ -36,7 +36,7 @@ router.post('/signup', (req,res) => {
   }
 })
 
-router.post('/login', (req,res) => {
+router.post('/login', (req, res) => {
   model.User.findOne({
     where: {
       username: req.body.username,
@@ -50,16 +50,26 @@ router.post('/login', (req,res) => {
         role: 'user'
       }
     })
-    .then(data2 => {
-      if (data2) {
-        req.session.username = data2.username
-        // req.session.password = data2.password
-        req.session.role = data2.role
-        res.send(`login berhasil`)
-      }
-      else {
-        res.send('password salah')
-      }
+    .then(data => {
+      model.User.findOne({
+          where: {
+            password: hash(data.secret, req.body.password)
+          }
+        })
+        .then(data2 => {
+          if (data2) {
+            req.session.user = {
+              idUser: data.id,
+              username: req.body.username,
+              role: data.role
+            }
+            console.log(req.session.user);
+            res.redirect('/profile')
+          }
+          else {
+            res.send('password salah')
+          }
+        })
     })
   })
   .catch(err => {

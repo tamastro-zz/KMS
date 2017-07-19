@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-  up: function(queryInterface, Sequelize) {
+  up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('Bridges', {
       id: {
         allowNull: false,
@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      UserId: {
         type: Sequelize.INTEGER
       },
-      carId: {
+      CarId: {
         type: Sequelize.INTEGER
       },
       status: {
@@ -36,7 +36,7 @@ module.exports = {
       }
     });
   },
-  down: function(queryInterface, Sequelize) {
+  down: function (queryInterface, Sequelize) {
     return queryInterface.dropTable('Bridges');
   }
 };
