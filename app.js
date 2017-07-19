@@ -8,8 +8,6 @@ const crypto = require('crypto');
 
 //router
 
-
-
 var app = express();
 
 
@@ -21,12 +19,11 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(valid())
 app.use(session({
-  secret: 'kmshe',
+  secret: 'kms',
   resave: false,
   saveUninitialized: true,
   cookie: {}
 }))
-
 
 
 app.listen(process.env.PORT || 3000);
