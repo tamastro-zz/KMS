@@ -27,6 +27,28 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  model.Bridge.findAll({
+      where: {
+        UserId: req.session.user.idUser
+      }
+    })
+    .then(con => {
+      console.log(con);
+      model.Bridge.update({
+          hutang: con.hutang - con.sisaBulan,
+          status: setter
+        }, {
+          where: {
+            UserId: req.session.user.idUser
+          }
+        })
+        .then(() => {
+          res.redirect('/profile')
+        })
+    })
+})
+
 router.get('/edit/:id', (req, res) => {
   model.User.findOne({
       where: {

@@ -24,11 +24,12 @@ router.post('/', (req, res) => {
       uangMuka: req.body.muka,
       cicilan: req.body.bulan,
       sisaBulan: (req.body.harga - req.body.muka) / req.body.bulan,
+      hutang: req.body.harga - req.body.muka,
       createdAt: new Date(),
       updatedAt: new Date()
     }))
     .then(() => {
-      res.redirect('/cars')
+      res.redirect('/profile')
     })
 })
 
