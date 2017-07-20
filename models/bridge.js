@@ -8,6 +8,15 @@ module.exports = function (sequelize, DataTypes) {
     cicilan: DataTypes.INTEGER,
     sisaBulan: DataTypes.INTEGER,
     hutang: DataTypes.INTEGER
+  }, {
+    hooks: {
+      beforeCreate: function (models) {
+        if (models.hutang <= 500) {
+          models.hutang = 0
+          models.status = true
+        }
+      }
+    }
   })
   Bridge.associate = (models) => {
     Bridge.belongsTo(models.User)

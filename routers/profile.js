@@ -5,6 +5,24 @@ var session = require('express-session')
 
 var model = require('../models')
 
+function setter(utang, mines) {
+  if (utang < mines) {
+    return true
+  }
+  else {
+    return false
+  }
+}
+
+function kurang(utang, mines) {
+  if (utang < mines) {
+    return 0
+  }
+  else {
+    return utang - mines
+  }
+}
+
 router.get('/', (req, res) => {
   model.User.findOne({
       where: {
@@ -28,19 +46,20 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  model.Bridge.findAll({
+  model.Bridge.findOne({
       where: {
-        UserId: req.session.user.idUser
+        UserId: req.session.user.idUser,
+        CarId: req.body.id
       }
     })
     .then(con => {
-      console.log(con);
       model.Bridge.update({
-          hutang: con.hutang - con.sisaBulan,
-          status: setter
+          hutang: kurang(con.hutang, con.sisaBulan),
+          status: setter(con.hutang, con.sisaBulan)
         }, {
           where: {
-            UserId: req.session.user.idUser
+            UserId: req.session.user.idUser,
+            CarId: req.body.id
           }
         })
         .then(() => {

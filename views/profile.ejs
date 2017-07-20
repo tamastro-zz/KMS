@@ -12,7 +12,7 @@
       <br><br>
       <br>
       <div class="container">
-        <div class="col s6 #f48fb1 pink lighten-3" align=center>
+        <div class="col s6 #e91e63 pink" align=center>
           <h1><%= dataUser.username.toUpperCase() %></h1>
         </div>
         <a href="/profile/edit/<%= dataUser.id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>
@@ -25,7 +25,6 @@
                 <b>Email User :</b>
                 <%= dataUser.email %><br>
         </p>
-
         <table class="responsive-table">
           <tr>
             <th>Mobil</th>
@@ -35,6 +34,7 @@
             <th>Status</th>
           </tr>
           <% dataMobil.forEach(data => {%>
+
             <tr>
               <td>
                 <%= data.Car.brand %> -
@@ -48,6 +48,7 @@
               </td>
               <td>
                 <form action="/profile" method="post">
+                  <input type="hidden" class="validate" name="id" value="<%=data.Car.id%>">
                   <button type="submit" class="btn waves-effect waves-light green" name="submit">Konfirmasi Perbayaran</button>
                 </form>
               </td>
