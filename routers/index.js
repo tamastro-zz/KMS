@@ -41,6 +41,13 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
   model.User.findOne({
+    where: {
+      username: req.body.username,
+      role: 'user'
+    }
+  })
+  .then(data => {
+    model.User.findOne({
       where: {
         username: req.body.username,
         role: 'user'
