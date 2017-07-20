@@ -3,7 +3,8 @@ module.exports = function (sequelize, DataTypes) {
   var Car = sequelize.define('Car', {
     brand: DataTypes.STRING,
     type: DataTypes.STRING,
-    price: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
+    link_gambar: DataTypes.STRING
   })
   Car.associate = (models) => {
     Car.belongsToMany(models.User, {

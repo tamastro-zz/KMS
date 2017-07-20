@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/admin">Home</a> | <a href="/admin/cars">List Mobil</a> | <a href="/logout">LOGOUT</a>
+    <br><br>
+    <table border="1px" width="100%">
+      <tr>
+        <th>brand</th>
+        <th>type</th>
+        <th>price</th>
+        <th>actions</th>
+      </tr>
+      <%dataCars.forEach(d => {%>
+      <tr>
+        <td><%=d.brand%></td>
+        <td><%=d.type%></td>
+        <td><%=d.price%></td>
+        <td><a href="/admin/cars/delete/<%=d.id%>">Delete</a> | <a href="/admin/cars/edit/<%=d.id%>">Edit</a></td>
+      </tr>
+      <%})%>
+    </table><br>
+    <a href="/admin/car/add">Add Car</a>
+  </body>
+</html>

@@ -9,16 +9,11 @@ router.get('/', (req, res) => {
   model.Car.findAll({
       order: [['brand', 'ASC']]
     })
-    .then(car => {
-      model.User.findAll({
-          order: [['name', 'ASC']]
-        })
-        .then(user => {
-          res.render('cars', {
-            dataMobil: car,
-            dataUser: user
-          })
-        })
+    .then(user => {
+      res.render('cars', {
+        dataMobil: car,
+        dataUser: user
+      })
     })
 })
 
@@ -48,7 +43,7 @@ router.post('/connect', (req, res) => {
       status: true,
       uangMuka: req.body.muka,
       cicilan: req.body.cicil,
-      sisaBulan: req.body.cicil,
+      link_gambar: req.body.link,
       createdAt: new Date(),
       updatedAt: new Date()
     }))

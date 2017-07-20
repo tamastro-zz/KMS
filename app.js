@@ -33,10 +33,12 @@ var carModel = require('./models/car')
 var indexRouter = require('./routers/index')
 var profilesRouter = require('./routers/profile')
 var carRouter = require('./routers/car')
+var adminRouter = require('./routers/admin')
 
 app.use('/', indexRouter)
 app.use('/profile', profilesRouter)
 app.use('/cars', carRouter)
+app.use('/admin', adminRouter)
 
 
 
