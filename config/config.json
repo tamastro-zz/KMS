@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "tamastro",
-    "password": "1234",
+    "username": "user1",
+    "password": "user1",
     "database": "kms",
     "host": "127.0.0.1",
     "dialect": "postgres",

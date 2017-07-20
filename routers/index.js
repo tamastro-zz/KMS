@@ -7,7 +7,8 @@ var hash = require('../helpers/hash')
 
 
 router.get('/', (req, res) => {
-  res.render('login')
+  console.log(req.session);
+  res.render('index')
 })
 
 router.get('/signup', (req, res) => {
@@ -36,82 +37,51 @@ router.post('/signup', (req, res) => {
   }
 })
 
-router.post('/login', (req, res) => {
+router.get('/login', (req,res) => {
+  res.render('login')
+})
+
+router.post('/login', (req,res) => {
   model.User.findOne({
     where: {
       username: req.body.username,
-      role: 'user'
+      // role: 'user'
     }
   })
   .then(data => {
     model.User.findOne({
       where: {
         password: hash(data.secret, req.body.password),
-        role: 'user'
-      }
-    })
-    .then(data => {
-      model.User.findOne({
-          where: {
-            password: hash(data.secret, req.body.password)
-          }
-        })
-        .then(data2 => {
-          if (data2) {
-            req.session.user = {
-              idUser: data.id,
-              username: req.body.username,
-              role: data.role
-            }
-            console.log(req.session.user);
-            res.redirect('/profile')
-          }
-          else {
-            res.send('password salah')
-          }
-        })
-    })
-  })
-  .catch(err => {
-    res.send('username tidak ada')
-  })
-})
-
-router.get('/admin', (req,res) => {
-  res.render('login_admin')
-})
-
-router.post('/admin', (req,res) => {
-  model.User.findOne({
-    where: {
-      username: req.body.username,
-      role: 'administrator'
-    }
-  })
-  .then(data => {
-    model.User.findOne({
-      where: {
-        password: hash(data.secret, req.body.password),
-        role: 'administrator'
+        // role: 'user'
       }
     })
     .then(data2 => {
       if (data2) {
-        req.session.user = {
-          idUser: data2.id,
-          username: data2.username,
-          role: data2.role
+        req.session.username = data2.username
+        // req.session.password = data2.password
+        if (data2.role == 'administrator') {
+          req.session.role = data2.role
+          // res.send('berhasil login sebagai admin')
+          res.redirect('/admin')
         }
-        res.send(`login admin berhasil.. username: ${req.session.user.username}, role: ${req.session.user.role}`)
+        else if (data2.role == 'user') {
+          req.session.role = data2.role
+          res.send('berhasil login sebagai user')
+        }
       }
       else {
-        res.send('password admin salah')
+        res.send('password salah')
       }
     })
   })
   .catch(err => {
     res.send('username tidak ada')
   })
+})
+
+router.get('/logout', (req,res) => {
+  req.session.destroy()
+  res.redirect('/')
 })
 
 module.exports = router
