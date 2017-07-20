@@ -5,6 +5,15 @@ var session = require('express-session')
 
 var model = require('../models')
 
+router.use((req, res, next) => {
+  if (req.session.user.role == 'administrator' || req.session.user.role == 'user') {
+    next()
+  }
+  else {
+    res.sendStatus(401)
+  }
+})
+
 router.get('/', (req, res) => {
   model.Car.findAll({
       order: [['brand', 'ASC']]
