@@ -32,7 +32,7 @@ router.post('/signup', (req, res) => {
         password: req.body.password
       }))
       .then(() => {
-        res.redirect('/')
+        res.redirect('/login')
       })
   }
   else {

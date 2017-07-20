@@ -7,7 +7,13 @@ module.exports = function (sequelize, DataTypes) {
     uangMuka: DataTypes.INTEGER,
     cicilan: DataTypes.INTEGER,
     sisaBulan: DataTypes.INTEGER,
-    hutang: DataTypes.INTEGER
+    hutang: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      unique: true
+    }
   }, {
     hooks: {
       beforeCreate: function (models) {

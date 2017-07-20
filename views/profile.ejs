@@ -28,9 +28,11 @@
         <table class="responsive-table">
           <tr>
             <th>Mobil</th>
-            <th>Total Kredit</th>
-            <th>Bayar Perbulan</th>
-            <th>Payment</th>
+            <th>Price</th>
+            <th>DP</th>
+            <th>Durasi cicilan</th>
+            <th>Cicilan /bulan</th>
+            <th>Hutang</th>
             <th>Status</th>
           </tr>
           <% dataMobil.forEach(data => {%>
@@ -41,17 +43,20 @@
                   <%= data.Car.type %>
               </td>
               <td>
-                <%=data.hutang.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%>
+                <%=data.Car.price.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%>
               </td>
+              <td><%=data.uangMuka.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%></td>
               <td>
-                <%= data.sisaBulan.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'}) %>
+                <%= data.cicilan %>
               </td>
-              <td>
+              <td><%=data.sisaBulan.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%></td>
+              <td><%=data.hutang.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%></td>
+              <!-- <td>
                 <form action="/profile" method="post">
                   <input type="hidden" class="validate" name="id" value="<%=data.Car.id%>">
                   <button type="submit" class="btn waves-effect waves-light green" name="submit">Konfirmasi Perbayaran</button>
                 </form>
-              </td>
+              </td> -->
               <td>
                 <%if(data.status == true) {%>
                   <p>

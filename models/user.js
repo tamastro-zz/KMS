@@ -22,6 +22,12 @@ module.exports = function(sequelize, DataTypes) {
         let password = models.password;
         models.secret = secret;
         models.password = hash(secret, password);
+      },
+      beforeUpdate: (models) => {
+        let secret = randomSecret();
+        let password = models.password;
+        models.secret = secret;
+        models.password = hash(secret, password);
       }
     }
   })

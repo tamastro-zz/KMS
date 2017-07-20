@@ -2,26 +2,9 @@
 var express = require('express')
 var router = express.Router()
 var session = require('express-session')
-
 var model = require('../models')
-
-function setter(utang, mines) {
-  if (utang < mines) {
-    return true
-  }
-  else {
-    return false
-  }
-}
-
-function kurang(utang, mines) {
-  if (utang < mines) {
-    return 0
-  }
-  else {
-    return utang - mines
-  }
-}
+var kurang = require('../helpers/kurang')
+var setter = require('../helpers/setter')
 
 router.get('/', (req, res) => {
   model.User.findOne({
@@ -34,7 +17,8 @@ router.get('/', (req, res) => {
           where: {
             UserId: profil.id
           },
-          include: [model.User, model.Car]
+          include: [model.User, model.Car],
+          order: [['createdAt', 'ASC']]
         })
         .then(mobil => {
           res.render('profile', {
