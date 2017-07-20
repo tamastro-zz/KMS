@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <title>login</title>
+    <%- include layout/materialize %>
   </head>
+
   <body>
-    <form action="/login" method="post">
-      <h2>login</h2>
-      <input type="text" name="username" placeholder="username"><br>
-      <input type="password" name="password" placeholder="password"><br><br>
-      <button type="submit" name="submit">login</button>
-    </form>
-    <p>don't have account? <a href="/signup">register here</a></p>
+    <%- include layout/header %>
+      <div class="container">
+        <div class="row">
+          <form action="/login" method="post">
+            <h2>Login</h2>
+            <input type="text" name="username" placeholder="username"><br>
+            <input type="password" name="password" placeholder="password"><br><br>
+            <button class="btn waves-effect waves-light grey" type="submit" name="submit">login</button>
+          </form>
+          <p>don't have account? <a href="/signup">register here</a></p>
+        </div>
+      </div>
+
   </body>
+
 </html>

@@ -3,13 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>login admin</title>
+    <%- include layout/materialize %>
   </head>
+
   <body>
-    <form action="/admin" method="post">
-      <h2>login administrator</h2>
-      <input type="text" name="username" placeholder="username"><br>
-      <input type="password" name="password" placeholder="password"><br><br>
-      <button type="submit" name="submit">login</button>
-    </form>
+    <%- include layout/header %>
+      <div class="container">
+        <div class="row">
+          <form action="/admin" method="post">
+            <h2>Administrator Login Page</h2>
+            <input type="text" name="username" placeholder="username"><br>
+            <input type="password" name="password" placeholder="password"><br><br>
+            <button type="submit" name="submit">login</button>
+          </form>
+        </div>
+
+      </div>
+
   </body>
 </html>
