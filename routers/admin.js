@@ -64,7 +64,8 @@ router.post('/cars/edit/:id', (req, res) => {
           brand: req.body.brand,
           type: req.body.type,
           price: req.body.price,
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          link_gambar: req.body.gambar
         }, {
           where: {
             id: req.params.id
@@ -86,7 +87,8 @@ router.post('/car/add', (req, res) => {
       type: req.body.type,
       price: req.body.price,
       updatedAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      link_gambar: req.body.gambar
     })
     .then(() => {
       res.redirect('/admin/cars')

@@ -12,6 +12,7 @@
         <th>brand</th>
         <th>type</th>
         <th>price</th>
+        <th>source gambar</th>
         <th>actions</th>
       </tr>
       <%dataCars.forEach(d => {%>
@@ -19,6 +20,7 @@
         <td><%=d.brand%></td>
         <td><%=d.type%></td>
         <td><%=d.price%></td>
+        <td><%=d.link_gambar%></td>
         <td><a href="/admin/cars/delete/<%=d.id%>">Delete</a> | <a href="/admin/cars/edit/<%=d.id%>">Edit</a></td>
       </tr>
       <%})%>

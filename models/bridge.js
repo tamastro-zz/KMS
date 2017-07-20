@@ -6,7 +6,8 @@ module.exports = function (sequelize, DataTypes) {
     status: DataTypes.BOOLEAN,
     uangMuka: DataTypes.INTEGER,
     cicilan: DataTypes.INTEGER,
-    sisaBulan: DataTypes.INTEGER
+    sisaBulan: DataTypes.INTEGER,
+    hutang: DataTypes.INTEGER
   })
   Bridge.associate = (models) => {
     Bridge.belongsTo(models.User)
