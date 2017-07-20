@@ -8,17 +8,42 @@
   </head>
 
   <body>
-    <%- include layout/header %>
-      <h1><%= dataUser.User.name %></h1>
-      <h1><%= dataUser.User.address %></h1>
-      <h1><%= dataUser.User.phone %></h1>
-      <h1><%= dataUser.User.email %></h1>
-      <h1><%= dataUser.User.username %></h1>
-      <h1><%= dataUser.Car.brand %></h1>
-      <h1><%= dataUser.Car.type %></h1>
+    <%- include layout/innerheader %>
+      <br><br>
+      <br>
+      <div class="container">
+        <div class="col s6 #f48fb1 pink lighten-3" align=center>
+          <h1><%= dataUser[0].User.username.toUpperCase() %></h1>
+        </div>
+        <a href="/profile/edit/<%= dataUser[0].User.id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>
+        <p class="flow-text"><b>Nama User :</b>
+          <%= dataUser[0].User.name %><br>
+            <b>Alamat User :</b>
+            <%= dataUser[0].User.address %><br>
+              <b>Telfon User :</b>
+              <%= dataUser[0].User.phone %><br>
+                <b>Email User :</b>
+                <%= dataUser[0].User.email %><br>
+        </p>
 
-      <h1><%= dataUser.uangMuka %></h1>
-
+        <table class="responsive-table">
+          <tr>
+            <th>Mobil</th>
+            <th>Sisa Pembayaran</th>
+          </tr>
+          <% dataUser.forEach(data => {%>
+            <tr>
+              <td>
+                <%= data.Car.brand %> -
+                  <%= data.Car.type %>
+              </td>
+              <td>
+                <%= data.sisaBulan.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'}) %>
+              </td>
+            </tr>
+            <%})%>
+        </table>
+      </div>
   </body>
 
 </html>

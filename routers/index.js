@@ -49,30 +49,21 @@ router.post('/login', (req, res) => {
     .then(data => {
       model.User.findOne({
           where: {
-            password: hash(data.secret, req.body.password),
-            role: 'user'
+            password: hash(data.secret, req.body.password)
           }
         })
-        .then(data => {
-          model.User.findOne({
-              where: {
-                password: hash(data.secret, req.body.password)
-              }
-            })
-            .then(data2 => {
-              if (data2) {
-                req.session.user = {
-                  idUser: data.id,
-                  username: req.body.username,
-                  role: data.role
-                }
-                console.log(req.session.user);
-                res.redirect('/profile')
-              }
-              else {
-                res.send('password salah')
-              }
-            })
+        .then(data2 => {
+          if (data2) {
+            req.session.user = {
+              idUser: data.id,
+              username: req.body.username,
+              role: data.role
+            }
+            res.redirect('/profile')
+          }
+          else {
+            res.send('password salah')
+          }
         })
     })
     .catch(err => {

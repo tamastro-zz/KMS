@@ -9,17 +9,20 @@
 
   <body>
     <%- include layout/header %>
-      <form action="/signup" method="post">
-        <h2>sign up</h2>
-        <input type="text" name="name" placeholder="full name"><br>
-        <input type="text" name="address" placeholder="address"><br>
-        <input type="text" name="phone" placeholder="phone number"><br>
-        <input type="text" name="email" placeholder="email"><br>
-        <input type="text" name="username" placeholder="username"><br>
-        <input type="password" name="password" placeholder="password"><br>
-        <input type="password" name="confpassword" placeholder="confirm password"><br><br>
-        <button type="submit" name="submit">signup</button>
-      </form>
+      <div class="container">
+        <form action="/signup" method="post">
+          <h2>Sign Up</h2>
+          <input type="text" name="name" placeholder="full name"><br>
+          <input type="text" name="address" placeholder="address"><br>
+          <input type="text" name="phone" placeholder="phone number"><br>
+          <input type="text" name="email" placeholder="email"><br>
+          <input type="text" name="username" placeholder="username"><br>
+          <input type="password" name="password" placeholder="password"><br>
+          <input type="password" name="confpassword" placeholder="confirm password"><br><br>
+          <button class="btn waves-effect waves-light grey" type="submit" name="submit">signup</button>
+        </form>
+      </div>
+
   </body>
 
 </html>

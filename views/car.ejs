@@ -8,16 +8,18 @@
   </head>
 
   <body>
-    <%- include layout/header %>
-      <div class="row">
-        <h1><% dataMobil[0].type %></h1>
-        <form action="/cars" method="post">
-          <input type="text" name="userId" value=""><br>
-          <input type="text" name="mobilId" value=""><br>
-          <input type="text" name="muka" value=""><br>
-          <input type="text" name="cicil" value=""><br>
-          <input type="submit" value="Submit">
-        </form>
+    <%- include layout/innerheader %>
+      <div class="container">
+        <div class="row">
+          <h1><% dataMobil[0].type %></h1>
+          <form action="/cars" method="post">
+            <input type="text" name="userId" placeholder="User"><br>
+            <input type="text" name="mobilId" placeholder="Mobil"><br>
+            <input type="text" name="muka" placeholder="Uang Muka"><br>
+            <input type="text" name="cicil" placeholder="Cicilan"><br>
+            <input class="btn waves-effect waves-light grey" type="submit" value="Submit">
+          </form>
+        </div>
       </div>
 
   </body>
