@@ -85,6 +85,16 @@ router.post('/login', (req, res) => {
     })
 })
 
+
+router.use((req, res, next) => {
+  if (req.session.user) {
+    next()
+  }
+  else {
+    res.sendStatus(403)
+  }
+})
+
 router.get('/logout', (req, res) => {
   req.session.destroy()
   res.redirect('/')

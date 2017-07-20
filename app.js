@@ -36,6 +36,16 @@ var carRouter = require('./routers/car')
 var adminRouter = require('./routers/admin')
 
 app.use('/', indexRouter)
+
+app.use((req, res, next) => {
+  if (req.session.user) {
+    next()
+  }
+  else {
+    res.sendStatus(403)
+  }
+})
+
 app.use('/profile', profilesRouter)
 app.use('/cars', carRouter)
 app.use('/admin', adminRouter)
