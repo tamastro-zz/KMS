@@ -10,15 +10,15 @@
   <body>
     <%- include layout/innerheader %>
       <br><br><br>
-      <% dataMobil.Car.forEach(mobil => { %>
-
-
+      <% dataMobil.forEach(mobil => { %>
         <div class="row">
           <div class="col s4">
-            <img class="materialboxed" data-caption="<%= mobil.Car.brand - mobil.Car.type %>" width="500" src="<%= mobil.Car.link_gambar %>">
+            <img class="materialboxed" data-caption="<%= mobil.brand %> - <%= mobil.type %>" width="500" src="<%= mobil.link_gambar %>">
             <form class="col s12" action="/cars" method="post">
               <div class="input-field inline">
-                <input type="text" class="validate">
+                <input type="hidden" class="validate" name="id" value="<%=mobil.id%>">
+                <input type="hidden" class="validate" name="harga" value="<%=mobil.price%>">
+                <input type="text" class="validate" name="muka">
                 <label>Uang Muka</label>
                 <select name="bulan" class="browser-default">
                    <option value="" disabled selected>Choose your option</option>

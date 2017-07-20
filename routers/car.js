@@ -6,13 +6,29 @@ var session = require('express-session')
 var model = require('../models')
 
 router.get('/', (req, res) => {
-  model.Bridge.findAll({
-      include: [model.Car, model.User]
+  model.Car.findAll({
+      order: [['brand', 'ASC']]
     })
     .then(car => {
       res.render('cars', {
         dataMobil: car
       })
+    })
+})
+
+router.post('/', (req, res) => {
+  model.Bridge.create(({
+      UserId: req.session.user.idUser,
+      CarId: req.body.id,
+      status: false,
+      uangMuka: req.body.muka,
+      cicilan: req.body.bulan,
+      sisaBulan: req.body.harga - req.body.muka / req.body.bulan,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }))
+    .then(() => {
+      res.redirect('/cars')
     })
 })
 
