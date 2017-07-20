@@ -10,9 +10,12 @@
   <body>
     <%- include layout/innerheader %>
       <br><br><br>
-      <% dataMobil.forEach(mobil => { %>
-        <div class="row">
+
+      <div class="row">
+        <% dataMobil.forEach(mobil => { %>
           <div class="col s4">
+            <h5><%= mobil.brand %> - <%= mobil.type %></h5>
+            <h5><%=mobil.price.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%></h5>
             <img class="materialboxed" data-caption="<%= mobil.brand %> - <%= mobil.type %>" width="500" src="<%= mobil.link_gambar %>">
             <form class="col s12" action="/cars" method="post">
               <div class="input-field inline">
@@ -32,6 +35,8 @@
             </form>
           </div>
           <%})%>
+      </div>
+
   </body>
 
 </html>

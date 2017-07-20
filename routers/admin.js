@@ -86,6 +86,7 @@ router.post('/car/add', (req, res) => {
       brand: req.body.brand,
       type: req.body.type,
       price: req.body.price,
+      link_gambar: req.body.gambar,
       updatedAt: new Date(),
       updatedAt: new Date(),
       link_gambar: req.body.gambar

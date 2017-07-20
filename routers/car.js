@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
       status: false,
       uangMuka: req.body.muka,
       cicilan: req.body.bulan,
-      sisaBulan: req.body.harga - req.body.muka / req.body.bulan,
+      sisaBulan: (req.body.harga - req.body.muka) / req.body.bulan,
       createdAt: new Date(),
       updatedAt: new Date()
     }))
