@@ -61,6 +61,8 @@ router.post('/login', (req, res) => {
                 username: req.body.username,
                 role: data2.role
               }
+
+              console.log(req.session.user);
               res.redirect('/admin')
             }
             else if (data2.role == 'user') {

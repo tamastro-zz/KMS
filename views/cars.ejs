@@ -10,80 +10,28 @@
   <body>
     <%- include layout/innerheader %>
       <br><br><br>
-      <div class="row">
-        <div class="col s4">
-          <img class="materialboxed" data-caption="Mercedes Benz SLR McLaren" width="500" src="http://4.bp.blogspot.com/_d_u-dfTHDhk/S9WbbMtY6uI/AAAAAAAABdU/KLVYFNIPzmM/s1600/Hamann-Mercedes-Benz_SLR_Volcano_2008_1024x768_wallpaper_11.jpg">
-          <form class="col s12" action="/cars" method="post">
-            <div class="input-field inline">
-              <input type="text" class="validate">
-              <label>Uang Muka</label>
-              <select name="bulan" class="browser-default">
+      <% dataMobil.Car.forEach(mobil => { %>
+
+
+        <div class="row">
+          <div class="col s4">
+            <img class="materialboxed" data-caption="<%= mobil.Car.brand - mobil.Car.type %>" width="500" src="<%= mobil.Car.link_gambar %>">
+            <form class="col s12" action="/cars" method="post">
+              <div class="input-field inline">
+                <input type="text" class="validate">
+                <label>Uang Muka</label>
+                <select name="bulan" class="browser-default">
                    <option value="" disabled selected>Choose your option</option>
                    <option value="6">6 Bulan</option>
                    <option value="12">12 Bulan</option>
                    <option value="18">18 Bulan</option>
                    <option value="24">24 Bulan</option>
                  </select>
-            </div>
-            <button type="submit" class="btn waves-effect waves-light grey" name="submit">Buy</button>
-          </form>
-        </div>
-
-        <div class="col s4">
-          <img class="materialboxed" data-caption="BMW M10" width="500" src="https://s-media-cache-ak0.pinimg.com/originals/9b/c6/5a/9bc65a96b274151c3b55a9e0e194c63e.jpg">
-          <form class="col s12" action="/cars" method="post">
-            <div class="input-field inline">
-              <input type="text" class="validate">
-              <label>Uang Muka</label>
-              <select name="bulan" class="browser-default">
-                   <option value="" disabled selected>Choose your option</option>
-                   <option value="6">6 Bulan</option>
-                   <option value="12">12 Bulan</option>
-                   <option value="18">18 Bulan</option>
-                   <option value="24">24 Bulan</option>
-                 </select>
-            </div>
-            <button type="submit" class="btn waves-effect waves-light grey" name="submit">Buy</button>
-          </form>
-        </div>
-
-        <div class="col s4">
-          <img class="materialboxed" data-caption="Ford Mustang GT" width="500" src="http://images.hgmsites.net/hug/2015-ford-mustang-apollo-edition_100518873_h.jpg">
-          <form class="col s12" action="/cars" method="post">
-            <div class="input-field inline">
-              <input type="text" class="validate">
-              <label>Uang Muka</label>
-              <select name="bulan" class="browser-default">
-                   <option value="" disabled selected>Choose your option</option>
-                   <option value="6">6 Bulan</option>
-                   <option value="12">12 Bulan</option>
-                   <option value="18">18 Bulan</option>
-                   <option value="24">24 Bulan</option>
-                 </select>
-            </div>
-            <button type="submit" class="btn waves-effect waves-light grey" name="submit">Buy</button>
-          </form>
-        </div>
-      </div>
-
-      <div class="col s4">
-        <img class="materialboxed" data-caption="Ford Mustang GT" width="500" src="http://images.hgmsites.net/hug/2015-ford-mustang-apollo-edition_100518873_h.jpg">
-        <form class="col s12" action="/cars" method="post">
-          <div class="input-field inline">
-            <input type="text" class="validate">
-            <label>Uang Muka</label>
-            <select name="bulan" class="browser-default">
-                 <option value="" disabled selected>Choose your option</option>
-                 <option value="6">6 Bulan</option>
-                 <option value="12">12 Bulan</option>
-                 <option value="18">18 Bulan</option>
-                 <option value="24">24 Bulan</option>
-               </select>
+              </div>
+              <button type="submit" class="btn waves-effect waves-light grey" name="submit">Buy</button>
+            </form>
           </div>
-          <button type="submit" class="btn waves-effect waves-light grey" name="submit">Buy</button>
-        </form>
-      </div>
-      </div>
+          <%})%>
   </body>
 
 </html>

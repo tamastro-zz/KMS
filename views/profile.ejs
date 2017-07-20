@@ -13,17 +13,17 @@
       <br>
       <div class="container">
         <div class="col s6 #f48fb1 pink lighten-3" align=center>
-          <h1><%= dataUser[0].User.username.toUpperCase() %></h1>
+          <h1><%= dataUser.username.toUpperCase() %></h1>
         </div>
-        <a href="/profile/edit/<%= dataUser[0].User.id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>
+        <a href="/profile/edit/<%= dataUser.id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>
         <p class="flow-text"><b>Nama User :</b>
-          <%= dataUser[0].User.name %><br>
+          <%= dataUser.name %><br>
             <b>Alamat User :</b>
-            <%= dataUser[0].User.address %><br>
+            <%= dataUser.address %><br>
               <b>Telfon User :</b>
-              <%= dataUser[0].User.phone %><br>
+              <%= dataUser.phone %><br>
                 <b>Email User :</b>
-                <%= dataUser[0].User.email %><br>
+                <%= dataUser.email %><br>
         </p>
 
         <table class="responsive-table">
@@ -31,7 +31,7 @@
             <th>Mobil</th>
             <th>Sisa Pembayaran</th>
           </tr>
-          <% dataUser.forEach(data => {%>
+          <% dataMobil.forEach(data => {%>
             <tr>
               <td>
                 <%= data.Car.brand %> -

@@ -6,13 +6,12 @@ var session = require('express-session')
 var model = require('../models')
 
 router.get('/', (req, res) => {
-  model.Car.findAll({
-      order: [['brand', 'ASC']]
+  model.Bridge.findAll({
+      include: [model.Car, model.User]
     })
-    .then(user => {
+    .then(car => {
       res.render('cars', {
-        dataMobil: car,
-        dataUser: user
+        dataMobil: car
       })
     })
 })
