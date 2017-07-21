@@ -5,6 +5,7 @@ var session = require('express-session')
 var model = require('../models')
 var kurang = require('../helpers/kurang')
 var setter = require('../helpers/setter')
+var hash = require('../helpers/hash')
 
 router.get('/', (req, res) => {
   model.User.findOne({
@@ -80,6 +81,46 @@ router.post('/edit/:id', (req, res) => {
     .then(() => {
       res.redirect('/profile')
     })
+})
+
+router.get('/editpassword/:id', (req,res) => {
+  model.User.findOne({
+    where: {
+      id: req.session.user.idUser
+    }
+  })
+  .then((data) => {
+    res.render('user_edit_password', {dataUser: data})
+  })
+})
+
+router.post('/editpassword/:id', (req,res) => {
+  model.User.findOne({
+    where: {
+      id: req.session.user.idUser
+    }
+  })
+  .then(data => {
+    console.log('------- ' + data.password);
+    if (hash(data.secret, req.body.passwordlama) == data.password) {
+      if (req.body.passwordbaru == req.body.confpasswordbaru) {
+        model.User.update({
+          password: hash(data.secret, req.body.passwordbaru)
+        }, {
+          where: {
+            id: req.params.id
+          }
+        })
+        res.redirect('/profile')
+      }
+      else {
+        res.send('konfirmasi password baru salah')
+      }
+    }
+    else {
+      res.send('password lama salah')
+    }
+  })
 })
 
 module.exports = router
