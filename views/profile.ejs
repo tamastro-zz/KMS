@@ -20,7 +20,7 @@
         <div class="col s6 #e91e63 pink" align=center>
           <h1 class="z-depth-5"><%= dataUser.username.toUpperCase() %></h1>
         </div>
-        <a href="/profile/edit/<%= dataUser.id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>
+        <a href="/profile/edit/<%= dataUser.id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a> | <a href="/profile/editpassword/<%=dataUser.id%>">Edit Password</a>
         <p class="flow-text"><b>Nama User :</b>
           <%= dataUser.name %><br>
             <b>Alamat User  :</b>
