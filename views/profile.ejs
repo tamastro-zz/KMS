@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <title>Profile</title>
     <%- include layout/materialize %>
+      <style>
+        p {
+          padding-right: 1.8em
+        }
+      </style>
   </head>
 
   <body>
@@ -13,14 +18,14 @@
       <br>
       <div class="container">
         <div class="col s6 #e91e63 pink" align=center>
-          <h1 class="fc"><%= dataUser.username.toUpperCase() %></h1>
+          <h1 class="z-depth-5"><%= dataUser.username.toUpperCase() %></h1>
         </div>
         <a href="/profile/edit/<%= dataUser.id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a>
         <p class="flow-text"><b>Nama User :</b>
           <%= dataUser.name %><br>
-            <b>Alamat User :</b>
+            <b>Alamat User  :</b>
             <%= dataUser.address %><br>
-              <b>Telfon User :</b>
+              <b>Telfon User  :</b>
               <%= dataUser.phone %><br>
                 <b>Email User :</b>
                 <%= dataUser.email %><br>
@@ -39,7 +44,7 @@
             <% if(data.status === true) {%>
               <tr bgcolor="#a5d6a7">
                 <% } else { %>
-                  <tr>
+                  <tr class="z-depth-5">
                     <% } %>
                       <td>
                         <%= data.Car.brand %> -
