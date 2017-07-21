@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = (utang, mines) => {
-  if (utang <= 0) {
+  if (utang <= mines) {
     return true
   }
   else {

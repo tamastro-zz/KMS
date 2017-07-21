@@ -8,18 +8,18 @@
   </head>
 
   <body>
-    <div class="container">
-      <%- include layout/innerheader_admin %>
-      <br><br><br>
-      <form action="/admin/cars/edit/<%=dataCar.id%>" method="post">
-        <input type="text" name="brand" placeholder="brand" value="<%=dataCar.brand%>"><br>
-        <input type="text" name="type" placeholder="type" value="<%=dataCar.type%>"><br>
-        <input type="text" name="price" placeholder="price" value="<%=dataCar.price%>"><br>
-        <input type="text" name="gambar" placeholder="link gambar" value="<%=dataCar.link_gambar%>"><br>
-        <button type="submit" name="submit" class="waves-effect waves-light btn #37474f blue-grey darken-3">submit</button><br><br>
-        <a href="/admin/cars">back</a>
-      </form>
-    </div>
+    <%- include layout/innerheader_admin %>
+      <div class="container">
+        <br><br><br>
+        <form action="/admin/cars/edit/<%=dataCar.id%>" method="post">
+          <input type="text" name="brand" placeholder="brand" value="<%=dataCar.brand%>"><br>
+          <input type="text" name="type" placeholder="type" value="<%=dataCar.type%>"><br>
+          <input type="text" name="price" placeholder="price" value="<%=dataCar.price%>"><br>
+          <input type="text" name="gambar" placeholder="link gambar" value="<%=dataCar.link_gambar%>"><br>
+          <button type="submit" name="submit" class="waves-effect waves-light btn #37474f blue-grey darken-3">submit</button><br><br>
+          <a href="/admin/cars">back</a>
+        </form>
+      </div>
   </body>
 
 </html>

@@ -44,7 +44,6 @@ router.post('/login', (req, res) => {
   model.User.findOne({
       where: {
         username: req.body.username,
-        // role: 'user'
       }
     })
     .then(data => {

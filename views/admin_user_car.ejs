@@ -1,47 +1,71 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <title>Customer List</title>
     <%- include layout/materialize %>
   </head>
+
   <body>
-    <div class="container">
-      <%- include layout/innerheader_admin %>
-      <br><br><br>
-      <table class="responsive-table">
-        <tr>
-          <th>Brand</th>
-          <th>Type</th>
-          <th>Price</th>
-          <th>DP</th>
-          <th>Durasi Cicilan</th>
-          <th>Cicilan/Bulan</th>
-          <th>Hutang</th>
-          <th>Status</th>
-          <th>Konfirmasi Bayar/Bulan</th>
-        </tr>
-        <%dataUserCar.forEach(d => {%>
-        <tr>
-          <td><%=d.Car.brand%></td>
-          <td><%=d.Car.type%></td>
-          <td><%=d.Car.price%></td>
-          <td><%=d.uangMuka%></td>
-          <td><%=d.cicilan%></td>
-          <td><%=d.sisaBulan%></td>
-          <td><%=d.hutang%></td>
-          <td>
-          <%if(!d.status) {%>
-          <font color="red">BELUM LUNAS</font>
-          <% } else {%>
-          <font color="green">LUNAS</font>
-          <%}%>
-          </td>
-          <td><form action="/admin/usercar/<%=d.id%>" method="post"><input type="submit" name="confirm" value="confirm" class="btn waves-effect waves-light green"></form></td>
-        </tr>
-        <%})%>
-      </table><br>
-      <a href="/admin">back</a>
-    </div>
+    <%- include layout/innerheader_admin %>
+      <div class="container">
+        <br><br><br>
+        <table class="responsive-table">
+          <tr>
+            <th>No</th>
+            <th>Brand</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>DP</th>
+            <th>Durasi Cicilan</th>
+            <th>Cicilan/Bulan</th>
+            <th>Hutang</th>
+            <th>Status</th>
+            <th>Konfirmasi Bayar/Bulan</th>
+          </tr>
+          <% x = 1 %>
+            <%dataUserCar.forEach(d => {%>
+              <tr>
+                <td>
+                  <%= x++ %>
+                </td>
+                <td>
+                  <%=d.Car.brand%>
+                </td>
+                <td>
+                  <%=d.Car.type%>
+                </td>
+                <td>
+                  <%=d.Car.price.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%>
+                </td>
+                <td>
+                  <%=d.uangMuka.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%>
+                </td>
+                <td>
+                  <%=d.cicilan%>
+                </td>
+                <td>
+                  <%=d.sisaBulan.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%>
+                </td>
+                <td>
+                  <%=d.hutang.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%>
+                </td>
+                <td>
+                  <%if(!d.status) {%>
+                    <font color="red">BELUM LUNAS</font>
+                    <% } else {%>
+                      <font color="green">LUNAS</font>
+                      <%}%>
+                </td>
+                <td>
+                  <form action="/admin/usercar/<%=d.id%>" method="post"><input type="submit" name="confirm" value="confirm" class="btn waves-effect waves-light green"></form>
+                </td>
+              </tr>
+              <%})%>
+        </table><br>
+        <a href="/admin" class="waves-effect waves-light btn #37474f blue-grey darken-3">back</a>
+      </div>
   </body>
+
 </html>

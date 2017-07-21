@@ -18,13 +18,15 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
   // console.log(req.session);
   model.User.findAll({
-    where: {
-      role: 'user'
-    }
-  })
-  .then(data => {
-    res.render('admin', {dataUser: data})
-  })
+      where: {
+        role: 'user'
+      }
+    })
+    .then(data => {
+      res.render('admin', {
+        dataUser: data
+      })
+    })
 })
 
 router.get('/cars', (req, res) => {
@@ -45,7 +47,14 @@ router.get('/cars/delete/:id', (req, res) => {
       }
     })
     .then(() => {
-      res.redirect('/admin/cars')
+      model.Bridge.destroy({
+          where: {
+            CarId: req.params.id
+          }
+        })
+        .then(() => {
+          res.redirect('/admin/cars')
+        })
     })
 })
 
@@ -105,49 +114,58 @@ router.post('/car/add', (req, res) => {
     })
 })
 
-router.get('/usercar/:id', (req,res) => {
+router.get('/usercar/:id', (req, res) => {
   model.Bridge.findAll({
-    where: {
-      UserId: req.params.id
-    },
-    include: [model.User, model.Car],
-    order: [['createdAt', 'ASC']]
-  })
-  .then(data => {
-    res.render('admin_user_car', {dataUserCar: data})
-  })
+      where: {
+        UserId: req.params.id
+      },
+      include: [model.User, model.Car],
+      order: [['createdAt', 'ASC']]
+    })
+    .then(data => {
+      res.render('admin_user_car', {
+        dataUserCar: data
+      })
+    })
 })
 
 router.post('/usercar/:id', (req, res) => {
   model.Bridge.findOne({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(data => {
-    model.Bridge.update({
-      hutang: kurang(data.hutang, data.sisaBulan),
-      status: setter(data.hutang, data.sisaBulan)
-    }, {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(data => {
+      model.Bridge.update({
+          hutang: kurang(data.hutang, data.sisaBulan),
+          status: setter(data.hutang, data.sisaBulan)
+        }, {
+          where: {
+            id: req.params.id
+          }
+        })
+        .then(() => {
+          res.redirect(`/admin/usercar/${data.UserId}`)
+        })
+    })
+})
+
+router.get('/user/delete/:id', (req, res) => {
+  model.User.destroy({
       where: {
         id: req.params.id
       }
     })
     .then(() => {
-      res.redirect(`/admin/usercar/${data.UserId}`)
+      model.Bridge.destroy({
+          where: {
+            UserId: req.params.id
+          }
+        })
+        .then(() => {
+          res.redirect('/admin')
+        })
     })
-  })
-})
-
-router.get('/user/delete/:id', (req,res) => {
-  model.User.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(() => {
-    res.redirect('/admin')
-  })
 })
 
 // router.get('/user/reset_password/:id', (req,res) => {
