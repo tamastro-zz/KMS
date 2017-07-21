@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <title>Car List</title>
     <%- include layout/materialize %>
   </head>
+
   <body>
-    <div class="container">
-      <%- include layout/innerheader_admin %>
-      <!-- <a href="/admin">Home</a> | <a href="/admin/cars">List Mobil</a> | <a href="/logout">LOGOUT</a> -->
-      <br><br><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <table class="responsive-table">
-        <tr>
-          <th>Brand</th>
-          <th>Type</th>
-          <th>Price</th>
-          <th>Source gambar</th>
-          <th>Actions</th>
-        </tr>
-        <%dataCars.forEach(d => {%>
-        <tr>
-          <td><%=d.brand%></td>
-          <td><%=d.type%></td>
-          <td><%=d.price.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%></td>
-          <td><%=d.link_gambar%></td>
-          <td><a href="/admin/cars/delete/<%=d.id%>" >DELETE</a> | <a href="/admin/cars/edit/<%=d.id%>">EDIT</a></td>
-        </tr>
-        <%})%>
-      </table><br>
-      <a href="/admin/car/add" class="waves-effect waves-light btn #37474f blue-grey darken-3">Add Car</a>
-    </div>
+    <%- include layout/innerheader_admin %>
+      <div class="container">
+        <!-- <a href="/admin">Home</a> | <a href="/admin/cars">List Mobil</a> | <a href="/logout">LOGOUT</a> -->
+        <br><br><br>
+        <table class="responsive-table">
+          <tr>
+            <th>No</th>
+            <th>Brand</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Source gambar</th>
+            <th>Actions</th>
+          </tr>
+
+          <% x = 1 %>
+            <%dataCars.forEach(d => {%>
+              <tr>
+                <td>
+                  <%= x++ %>
+                </td>
+                <td>
+                  <%=d.brand%>
+                </td>
+                <td>
+                  <%=d.type%>
+                </td>
+                <td>
+                  <%=d.price.toLocaleString('en-IN', {style: 'currency', currency: 'EUR'})%>
+                </td>
+                <td>
+                  <%=d.link_gambar%>
+                </td>
+                <td><a href="/admin/cars/delete/<%=d.id%>">DELETE</a> | <a href="/admin/cars/edit/<%=d.id%>">EDIT</a></td>
+              </tr>
+              <%})%>
+        </table><br>
+        <a href="/admin/car/add" class="waves-effect waves-light btn #37474f blue-grey darken-3">Add Car</a>
+      </div>
   </body>
+
 </html>

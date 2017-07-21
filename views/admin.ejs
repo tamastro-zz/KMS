@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <title>Admin</title>
     <%- include layout/materialize %>
   </head>
+
   <body>
-    <div class="container">
-      <%- include layout/innerheader_admin %>
-      <br><br><br>
-      <!-- <a href="/admin">Home</a> | <a href="/admin/cars">List Mobil</a> | <a href="/logout">LOGOUT</a> -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <table class="responsive-table">
-        <tr>
-          <th>Customer</th>
-          <th>Username</th>
-          <th>Options</th>
-          <th>Actions</th>
-        </tr>
-        <%dataUser.forEach(d => {%>
-        <tr>
-          <td><%=d.name%></td>
-          <td><%=d.username%></td>
-          <td><a href="/admin/usercar/<%=d.id%>">Detail Pembelian</a></td>
-          <td><a href="/admin/user/delete/<%=d.id%>">Delete</a></td>
-        </tr>
-        <%})%>
-      </table>
-    </div>
+    <%- include layout/innerheader_admin %>
+      <div class="container">
+
+        <br><br><br>
+        <table class="responsive-table">
+          <tr>
+            <th>No</th>
+            <th>Customer</th>
+            <th>Username</th>
+            <th>Options</th>
+            <th>Actions</th>
+          </tr>
+
+          <% x = 1 %>
+            <%dataUser.forEach(d => {%>
+              <tr>
+                <td>
+                  <%= x++ %>
+                </td>
+                <td>
+                  <%=d.name%>
+                </td>
+                <td>
+                  <%=d.username%>
+                </td>
+                <td><a href="/admin/usercar/<%=d.id%>" class="waves-effect waves-light btn #37474f blue-grey darken-3">Detail Pembelian</a></td>
+                <td><a href="/admin/user/delete/<%=d.id%>" class="waves-effect waves-light btn #37474f blue-grey darken-3">Delete</a></td>
+              </tr>
+              <%})%>
+        </table>
+      </div>
   </body>
+
+</html>
+
 </html>
